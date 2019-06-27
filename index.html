@@ -20,6 +20,8 @@
   
   class FileForm extends React.Component{
   
+    class FileForm extends React.Component{
+  
     Getdate(e){
      let fileData;
     let reader;
@@ -49,12 +51,7 @@
       itemArr.splice(0, 1);
       itemArr.splice(itemArr.length - 1, 1);
       console.log(itemArr[0]);
-      console.log(itemArr.map(([a, b, number, name, credit, f, g, score, i, j, k]) => ({
-        number,
-        name,
-        credit,
-        score
-      })));
+  
       score = itemArr.map(([a, b, number, name, credit, f, g, score, i, j, k]) => ({
         number,
         name,
@@ -62,8 +59,8 @@
         score
       }));
     };
-  });
- }
+  };
+ 
  
     render(){
     return(
@@ -74,6 +71,8 @@
     
     
   }
+  
+  
   
   
   
