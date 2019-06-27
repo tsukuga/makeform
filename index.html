@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  </head>
+  <body>
+   
+  <div id="root"></div>
+    
+
+  <script type="text/babel">
+  
+  
+  class FileForm extends React.Component{
+  
+    Getdate(e)=>{
+     let fileData;
+    let reader;
+    // 選択されたファイルの情報を取得
+    fileData = e.target.files[0];
+    reader = new FileReader();
+    reader.readAsText(fileData);
+    console.log(fileData);
+    console.log(reader);
+    reader.onload = function () {
+      let value = reader.result.split("\n");
+      console.log(reader.result);
+      console.log(value);
+      let itemArr = [];
+      // itemArr[1] = value[1].split("\",\"");
+      // console.log(itemArr[1]);
+      for (let i = 0; i < value.length; i++) {
+        itemArr[i] = value[i].split("\",\"");
+      };
+      console.log(itemArr);
+      for (let t = 0; t < itemArr.length; t++) {
+        if (itemArr[t][7] == "D") {
+          itemArr.splice(t, 1);
+          t--;
+        };
+      };
+      itemArr.splice(0, 1);
+      itemArr.splice(itemArr.length - 1, 1);
+      console.log(itemArr[0]);
+      console.log(itemArr.map(([a, b, number, name, credit, f, g, score, i, j, k]) => ({
+        number,
+        name,
+        credit,
+        score
+      })));
+      score = itemArr.map(([a, b, number, name, credit, f, g, score, i, j, k]) => ({
+        number,
+        name,
+        credit,
+        score
+      }));
+    };
+  });
+ }
+ 
+    render(){
+    return(
+    <input className="form-control form" type="file" id="file" size="30"
+    onChange={this.Getdate}></p>
+    )
+    }
+    
+    
+  }
+  
+  
+  
+  
+  
+  
+  ReactDOM.render(<FileForm/>, document.getElementById('id'));
+  </script>
+  </body>
+</html>
