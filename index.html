@@ -12,34 +12,30 @@
   </head>
   <body>
    
-  <div id="root"></div>
+  <div id='root'></div>
     
 
   <script type="text/babel">
   
   
   class FileForm extends React.Component{
-  
     Getdate(e){
-     let fileData;
+    let fileData;
     let reader;
     // 選択されたファイルの情報を取得
     fileData = e.target.files[0];
     reader = new FileReader();
     reader.readAsText(fileData);
-    console.log(fileData);
-    console.log(reader);
+   
     reader.onload = function () {
       let value = reader.result.split("\n");
-      console.log(reader.result);
-      console.log(value);
+     
       let itemArr = [];
-      // itemArr[1] = value[1].split("\",\"");
-      // console.log(itemArr[1]);
+    
       for (let i = 0; i < value.length; i++) {
         itemArr[i] = value[i].split("\",\"");
       };
-      console.log(itemArr);
+     
       for (let t = 0; t < itemArr.length; t++) {
         if (itemArr[t][7] == "D") {
           itemArr.splice(t, 1);
@@ -48,8 +44,7 @@
       };
       itemArr.splice(0, 1);
       itemArr.splice(itemArr.length - 1, 1);
-      console.log(itemArr[0]);
-  
+     
       score = itemArr.map(([a, b, number, name, credit, f, g, score, i, j, k]) => ({
         number,
         name,
